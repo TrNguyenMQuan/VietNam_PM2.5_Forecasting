@@ -33,7 +33,7 @@ def classify_region(city_name):
 
 def create_feature_temporal_social(df):
     print("Processing Group 1: Temporal & Social...")
-    
+    df = df.copy()
     # 1.1 Cyclical Hour
     df["hour"] = df["timestamp"].dt.hour
     df["hour_sin"] = np.sin(2 * np.pi * df["hour"] / 24)
@@ -79,7 +79,7 @@ def create_feature_temporal_social(df):
 
 def create_feature_physic(df):
     print("Processing Group 2: Physics & Meteo...")
-
+    df = df.copy()
     # 2.1 Wind Vector
     if "wind_speed" in df.columns and "wind_dir" in df.columns:
         wd_rad = df["wind_dir"] * np.pi / 180
@@ -107,7 +107,7 @@ def create_feature_physic(df):
 def create_feature_history_trend(df):
     print("Processing Group 3: History & Trend...")
     target = "pm2_5"
-
+    df = df.copy()
     # 3.1 Lag Features
     lags = [1, 2, 3, 24]
     for lag in lags:
@@ -130,7 +130,7 @@ def create_feature_history_trend(df):
 
 def create_feature_composition(df):
     print("Processing Group 4: Composition...")
-
+    df = df.copy()
     if "pm10" in df.columns and "pm2_5" in df.columns:
         # Coarse Dust
         df["coarse_dust"] = df["pm10"] - df["pm2_5"]
@@ -142,3 +142,36 @@ def create_feature_composition(df):
     for col in exo_cols:
         if col in df.columns:
             df[f"{col}_lag1h"] = df.groupby("city", observed=True)[col].shift(1)
+    
+    return df
+
+
+def train_val_test_split(df):
+    df_model = df.copy()
+    # Create Target (Shift -1 hour)
+    df_model["target_future"] = df_model.groupby("city", observed=True)["pm2_5"].shift(-1)
+
+    # Drop NaNs created by lags/rolling/shift
+    df_model = df_model.dropna()
+
+    # Define dates for split
+    val_start_date = pd.Timestamp("2025-08-01")
+    test_start_date = pd.Timestamp("2025-10-01")
+
+    # Split Data
+    train = df_model[df_model["timestamp"] < val_start_date]
+    val = df_model[(df_model["timestamp"] >= val_start_date) & (df_model["timestamp"] < test_start_date)]
+    test = df_model[df_model["timestamp"] >= test_start_date]
+
+    # Separate Features and Target
+    X_train = train.drop(columns=["timestamp", "target_future"])
+    y_train = train["target_future"]
+
+    X_val = val.drop(columns=["timestamp", "target_future"])
+    y_val = val["target_future"]
+
+    X_test = test.drop(columns=["timestamp", "target_future"])
+    y_test = test["target_future"]
+
+    return X_train, y_train, X_val, y_val, X_test, y_test
+    
