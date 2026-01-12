@@ -15,16 +15,16 @@ def classify_region(city_name):
     southern = ["Hồ Chí Minh", "Biên Hòa", "Tây Ninh", "Cao Lãnh", "Long Xuyên", "Cần Thơ", "Vĩnh Long", "Cà Mau"]
 
     if city_name in north_west:
-        return "Tây Bắc"
+        return "Vùng I. Tây Bắc"
     if city_name in north_east:
-        return "Đông Bắc"
+        return "Vùng II. Đông Bắc"
     if city_name in north:
-        return "Bắc Bộ"
+        return "Vùng III. Bắc Bộ"
     if city_name in north_central:
-        return "Bắc Trung Bộ"
+        return "Vùng IV. Bắc Trung Bộ"
     if city_name in central_coast:
-        return "Nam Trung Bộ"
+        return "Vùng V. Nam Trung Bộ"
     if city_name in central_highland:
-        return "Tây Nguyên"
+        return "Vùng VI. Tây Nguyên"
     if city_name in southern:
-        return "Nam Bộ"
+        return "Vùng VII. Nam Bộ"
