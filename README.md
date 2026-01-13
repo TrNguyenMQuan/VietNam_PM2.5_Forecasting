@@ -175,7 +175,7 @@ The dataset is a time-series collection integrating meteorological and air pollu
 
 ### 5.1 Human Activity Impact on Air Quality
 
-Human activities directly influence air quality in Vietnamese cities. Analysis reveals that air quality significantly improves on weekends compared to weekdays, with AQI typically peaking around **Thursday** and showing sharp decreases on **Saturday and Sunday** due to reduced industrial and traffic activities. Cities with high population density and intensive industrial activity (e.g., Hà Nội, Bắc Ninh, Hồ Chí Minh, Biên Hòa) show substantially higher AQI levels (mean AQI: **95.60**) compared to green cities with lower density and limited industrial concentration (mean AQI: **73.74**), demonstrating a **~30% difference** in pollution levels.
+Human activities directly influence air quality in Vietnamese cities. Analysis reveals that air quality significantly improves on weekends compared to weekdays, with AQI typically peaking around **Thursday** and showing sharp decreases on **Saturday and Sunday** due to reduced industrial and traffic activities. Cities with high population density and intensive industrial activity (e.g., Hà Nội, Bắc Ninh, Hồ Chí Minh, Biên Hòa) show substantially higher AQI levels (mean AQI: **87.83**) compared to green cities with lower density and limited industrial concentration (mean AQI: **56.85**), demonstrating a **~31% difference** in pollution levels.
 
 ### 5.2 Pollution Sources
 
@@ -354,11 +354,11 @@ The following table summarizes the performance of different models on the test s
 
 | Model | RMSE | MAE | R² | Improvement vs Baseline | Notes |
 |:------|:-----|:----|:---|:------------------------|:------|
-| **OLS (PM2.5 + PM10)** | 3.4013 | 1.7648 | 0.973 | Baseline | Multicollinearity issues |
-| **OLS (PM2.5 only)** | 3.3891 | 1.7623 | 0.973 | -0.4% RMSE | Improved stability |
-| **Ridge Regression** | 3.4011 | 1.7648 | 0.973 | -0.01% RMSE | L2 regularization |
-| **PCR** | 3.4013 | 1.7648 | 0.973 | 0% | Dimensionality reduction |
-| **PLS** | 3.4058 | 1.7972 | 0.972 | +0.13% RMSE | Underperformed |
+| **OLS (PM2.5 + PM10)** | 3.4013 | 1.7648 | - | Baseline | Multicollinearity issues |
+| **OLS (PM2.5 only)** | 3.3891 | 1.7623 | - | -0.4% RMSE | Improved stability |
+| **Ridge Regression** | 3.4011 | 1.7648 | - | -0.01% RMSE | L2 regularization |
+| **PCR** | 3.4013 | 1.7648 | - | 0% | Dimensionality reduction |
+| **PLS** | 3.4058 | 1.7972 | - | +0.13% RMSE | Underperformed |
 | **XGBoost** | **2.7315** | **1.4011** | **0.9766** | **-19.41% RMSE** | **Best performance** |
 
 ### 9.2 Detailed Analysis
