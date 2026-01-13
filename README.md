@@ -71,7 +71,7 @@ The project implements a complete data science pipeline:
 
 2. **Data Preprocessing**: Comprehensive cleaning, feature engineering (temporal features, lag variables, rolling statistics), and regional classifications
 
-3. **Exploratory Data Analysis (EDA)**: Investigation of temporal patterns, seasonal trends, and relationships between meteorological factors and PM2.5 concentrations
+3. **Exploratory Data Analysis (EDA)**: Investigate the factors affecting air quality in Vietnamese cities, including temporal and seasonal patterns, and use modeling techniques to examine multicollinearity among features related to PM2.5 concentrations. The EDA also focuses on analyzing AQI (Air Quality Index) patterns and their relationships with various environmental factors. 
 
 4. **Machine Learning Modeling**: Comparative analysis of multiple approaches:
    - Baseline linear models (OLS, Ridge, PCR, PLS)
@@ -108,7 +108,7 @@ The dataset is collected from the **[Open-Meteo API](https://open-meteo.com/)**,
 - **[Weather Archive API](https://open-meteo.com/en/docs/historical-weather-api)**: Supplies historical meteorological data including temperature, humidity, precipitation, wind conditions, and atmospheric pressure
 
 **Data Collection Details:**
-- **Time Range**: From `2023-01-01` to 5 days before the current date (to ensure data completeness)
+- **Time Range**: From `2023-01-01` to `2025-11-26`
 - **Temporal Resolution**: Hourly data points
 - **Timezone**: `Asia/Ho_Chi_Minh` (UTC+7) to match Vietnam's local time
 - **Geographic Coverage**: Approximately 34 provinces and major cities across Vietnam
@@ -175,7 +175,7 @@ The dataset is a time-series collection integrating meteorological and air pollu
 
 ### 5.1 Regional Climate Impact
 
-Climate plays a dominant role in pollution accumulation. Northern regions (subtropical climate with winter thermal inversion) show significantly higher AQI levels (e.g., Hưng Yên: **121.6**) compared to Southern regions (tropical, convective climate) despite similar emission levels (e.g., Ho Chi Minh City: **~80**).
+Human activities directly influence air quality in Vietnamese cities. Analysis reveals that air quality significantly improves on weekends compared to weekdays, with AQI typically peaking around **Thursday** and showing sharp decreases on **Saturday and Sunday** due to reduced industrial and traffic activities. Cities with high population density and intensive industrial activity (e.g., Hà Nội, Bắc Ninh, Hồ Chí Minh, Biên Hòa) show substantially higher AQI levels (mean AQI: **95.60**) compared to green cities with lower density and limited industrial concentration (mean AQI: **73.74**), demonstrating a **~30% difference** in pollution levels.
 
 ### 5.2 Pollution Sources
 
@@ -183,18 +183,17 @@ High AQI in Northern regions primarily stems from **local emission sources** rat
 
 ### 5.3 PM2.5 vs. PM10 Relationship
 
-- PM2.5 and PM10 exhibit high correlation (**0.96**) due to physical subset relationship
-- PM2.5 shows higher correlation with AQI (**0.76** vs. **0.73**)
-- Removing PM10 from linear models achieves comparable performance (**RMSE: 3.3619, MAE: 1.7799**) while improving stability
+In the most polluted northern cities (e.g., Hà Nội, Bắc Ninh, Hưng Yên), high AQI levels come from both **local emissions** and a strong **regional background** of pollution. The average PM2.5/PM10 ratio is about **0.79**, meaning most particles are fine dust and secondary aerosol, which is typical for **pollution transported from other regions** rather than only local road or construction dust.  
+For Hà Nội, PM2.5 during rush hours is almost the same as at night (rush/night ratio ≈ **1.0**), and rain only reduces PM2.5 by around **26%**. This flat daily pattern and weak cleaning effect of rain show that pollution is **constantly replenished from outside the city**, so severe episodes cannot be explained by local sources alone.
 
 ### 5.4 Model Performance
 
 **XGBoost** achieves superior results:
-- **RMSE:** 2.7106
-- **MAE:** 1.4037
-- **R²:** 0.977
+- **RMSE:** 2.7315
+- **MAE:** 1.4011
+- **R²:** 0.9766
 
-This represents a **19.45% reduction in RMSE** and **21.37% reduction in MAE** compared to linear regression. Notably, in XGBoost, PM10 emerges as a **top-3 important feature** despite multicollinearity issues in linear models, as tree-based models effectively leverage the physical relationship between PM2.5 and PM10.
+This represents a **19.41% reduction in RMSE** and **20.49% reduction in MAE** compared to linear regression. Notably, in XGBoost, PM10 emerges as a **top-3 important feature** despite multicollinearity issues in linear models, as tree-based models effectively leverage the physical relationship between PM2.5 and PM10.
 
 ---
 
@@ -203,31 +202,36 @@ This represents a **19.45% reduction in RMSE** and **21.37% reduction in MAE** c
 ```
 VietNam-AQI-Forescating/
 │
-├── data/                          # Data directory
-│   ├── raw/                       # Raw data from API
+├── data/                           # Data directory
+│   ├── raw/                        # Raw data from API
 │   │   └── vietnam_air_quality.csv
-│   └── processed/                 # Processed and cleaned data
-│       └── processed_data.csv
+│   ├── processed/                  # Processed and cleaned data
+│   │   └── processed_data.csv
+│   └── model/                      # Train/test/validation splits
+│       ├── train.csv
+│       ├── test.csv
+│       └── val.csv
 │
 ├── notebooks/                      # Jupyter notebooks for analysis
-│   ├── data_preprocessing.ipynb   # Data cleaning and feature engineering
-│   ├── data_exploration.ipynb     # Exploratory Data Analysis (EDA)
-│   └── data_modeling.ipynb        # Model training and evaluation
+│   ├── data_preprocessing.ipynb    # Data cleaning and feature engineering
+│   ├── data_exploration.ipynb      # Exploratory Data Analysis (EDA)
+│   └── data_modeling.ipynb         # Model training and evaluation
 │
-├── src/                           # Source code modules
-│   ├── create_locations.py        # Generate location coordinates
-│   ├── crawl_data.py              # Fetch data from Open-Meteo API
-│   ├── preprocessing.py           # Data preprocessing utilities
-│   └── visualization.py           # Visualization helper functions
+├── src/                            # Source code modules
+│   ├── create_locations.py         # Generate location coordinates
+│   ├── crawl_data.py               # Fetch data from Open-Meteo API
+│   ├── preprocessing.py            # Data preprocessing utilities
+│   └── visualization.py            # Visualization helper functions
 │
-    ├── README.md                      # Project documentation
-└── requirements.txt               # Python dependencies
+├── README.md                       # Project documentation
+└── requirements.txt                # Python dependencies
 ```
 
 ### 6.1 Directory Descriptions
 
 - **`data/raw/`**: Contains raw hourly air quality and meteorological data collected from Open-Meteo API
 - **`data/processed/`**: Contains cleaned and feature-engineered datasets ready for modeling
+- **`data/model/`**: Contains train/test/validation dataset splits (train.csv, test.csv, val.csv) for model training and evaluation
 - **`notebooks/`**: Jupyter notebooks organized by workflow stages (preprocessing → exploration → modeling)
 - **`src/`**: Python modules for data collection, preprocessing, and utility functions
 
@@ -263,36 +267,52 @@ pip install -r requirements.txt
 
 ### 7.3 Usage
 
-The project follows a sequential workflow from data collection to model training:
+The project follows a sequential workflow from data collection to model training. Follow these steps in order:
 
 #### Step 1: Generate Location Coordinates
 ```bash
 python src/create_locations.py
 ```
-This script generates `data/vietnam_locations.csv` containing latitude and longitude coordinates for approximately 34 provinces and cities across Vietnam.
+**Output:** `data/vietnam_locations.csv` containing latitude and longitude coordinates for approximately 34 provinces and cities across Vietnam.
 
 #### Step 2: Collect Air Quality and Weather Data
 ```bash
 python src/crawl_data.py
 ```
-This script fetches hourly air quality and meteorological data from the Open-Meteo API and saves it to `data/raw/vietnam_air_quality.csv`. The data collection covers the period from January 1, 2023 to 5 days before the current date.
+**Output:** `data/raw/vietnam_air_quality.csv` with hourly air quality and meteorological data from January 1, 2023 to 5 days before the current date.
 
-#### Step 3: Data Preprocessing
-Open and run all cells in `notebooks/data_preprocessing.ipynb` sequentially. This notebook performs:
-- Data cleaning and handling missing values
-- Feature engineering (temporal features, lag variables, rolling statistics)
-- Regional classification
-- Outputs processed data to `data/processed/processed_data.csv`
+#### Step 3: Understand Raw Dataset
+Open `notebooks/data_exploration.ipynb` and run **Section I: Data Understanding about Raw Dataset** (all cells from the beginning through Section I).
 
-#### Step 4: Exploratory Data Analysis
-Open and run `notebooks/data_exploration.ipynb` to:
-- Explore raw dataset structure and distributions
-- Analyze processed data characteristics
-- Investigate relationships between meteorological factors and PM2.5
-- Answer research questions about regional patterns and pollution sources
+**Purpose:** Get insights about raw dataset structure, size, variable meanings, and data quality before preprocessing.
 
-#### Step 5: Model Training and Evaluation
-Open and run `notebooks/data_modeling.ipynb` to:
+#### Step 4: Initial Data Cleaning
+Open `notebooks/data_preprocessing.ipynb` and run **Section I: Data Cleaning** (all cells through the end of Section I).
+
+**Output:** `data/processed/processed_data.csv` - cleaned dataset ready for EDA analysis.
+
+#### Step 5: Exploratory Data Analysis (EDA)
+Return to `notebooks/data_exploration.ipynb` and run:
+- **Section II: Data Understanding about Processed Data** - Verify cleaned data structure
+- **Section III: Columns Analysis** - Analyze value distributions and visualizations
+- **Section IV: Relationships & Correlations** - Investigate correlations between features and AQI
+- **Section V: Meaningful Questions** - Answer research questions about human activities, climate impact, and pollution sources
+
+**Purpose:** Deep dive into processed data to understand patterns, distributions, and relationships before final feature engineering.
+
+#### Step 6: Complete Preprocessing for Modeling
+Return to `notebooks/data_preprocessing.ipynb` and run:
+- **Section II: Data Reduction** - Remove analyzed columns (aqi, pollution_level, pollution_class)
+- **Section III: Feature Engineering** - Create temporal features, lag variables, rolling statistics
+- **Section IV: Data Splitting** - Split data into train/validation/test sets
+
+**Output:** 
+- `data/model/train.csv` - Training dataset
+- `data/model/val.csv` - Validation dataset  
+- `data/model/test.csv` - Test dataset
+
+#### Step 7: Model Training and Evaluation
+Open and run `notebooks/data_modeling.ipynb`:
 - Train baseline linear models (OLS, Ridge, PCR, PLS)
 - Train and optimize XGBoost model using Optuna
 - Compare model performance (RMSE, MAE, R²)
@@ -334,18 +354,18 @@ The following table summarizes the performance of different models on the test s
 
 | Model | RMSE | MAE | R² | Improvement vs Baseline | Notes |
 |:------|:-----|:----|:---|:------------------------|:------|
-| **OLS (PM2.5 + PM10)** | 3.3719 | 1.7804 | 0.973 | Baseline | Multicollinearity issues |
-| **OLS (PM2.5 only)** | 3.3619 | 1.7799 | 0.973 | -0.3% RMSE | Improved stability |
-| **Ridge Regression** | 3.3717 | 1.7804 | 0.973 | -0.01% RMSE | L2 regularization |
-| **PCR** | 3.3719 | 1.7804 | 0.973 | 0% | Dimensionality reduction |
-| **PLS** | 3.3916 | 1.8184 | 0.972 | +0.58% RMSE | Underperformed |
-| **XGBoost** | **2.7106** | **1.4037** | **0.977** | **-19.45% RMSE** | **Best performance** |
+| **OLS (PM2.5 + PM10)** | 3.4013 | 1.7648 | 0.973 | Baseline | Multicollinearity issues |
+| **OLS (PM2.5 only)** | 3.3891 | 1.7623 | 0.973 | -0.4% RMSE | Improved stability |
+| **Ridge Regression** | 3.4011 | 1.7648 | 0.973 | -0.01% RMSE | L2 regularization |
+| **PCR** | 3.4013 | 1.7648 | 0.973 | 0% | Dimensionality reduction |
+| **PLS** | 3.4058 | 1.7972 | 0.972 | +0.13% RMSE | Underperformed |
+| **XGBoost** | **2.7315** | **1.4011** | **0.9766** | **-19.41% RMSE** | **Best performance** |
 
 ### 9.2 Detailed Analysis
 
 #### Linear Models Performance
 
-All linear models (OLS, Ridge, PCR) achieve similar performance with RMSE around **3.37** and MAE around **1.78**, indicating:
+All linear models (OLS, Ridge, PCR) achieve similar performance with RMSE around **3.40** and MAE around **1.77**, indicating:
 
 - The relationship between features and PM2.5 is predominantly **linear**
 - **Multicollinearity** between PM2.5 and PM10 does not significantly degrade predictive performance
@@ -356,9 +376,9 @@ All linear models (OLS, Ridge, PCR) achieve similar performance with RMSE around
 
 **XGBoost** demonstrates significant improvements:
 
-- **RMSE Reduction**: 2.7106 vs 3.3619 (baseline) = **19.45% improvement**
-- **MAE Reduction**: 1.4037 vs 1.7799 (baseline) = **21.37% improvement**
-- **R² Score**: 0.977, explaining **97.7%** of variance in PM2.5 concentrations
+- **RMSE Reduction**: 2.7315 vs 3.3891 (baseline) = **19.41% improvement**
+- **MAE Reduction**: 1.4011 vs 1.7623 (baseline) = **20.49% improvement**
+- **R² Score**: 0.9766, explaining **97.7%** of variance in PM2.5 concentrations
 - **Feature Interactions**: XGBoost effectively captures non-linear relationships and complex feature interactions
 - **PM10 Importance**: Despite multicollinearity in linear models, PM10 emerges as a top-3 important feature in XGBoost, demonstrating tree-based models' ability to leverage physical relationships
 
