@@ -279,7 +279,7 @@ The project follows a sequential workflow from data collection to model training
 ```bash
 python src/create_locations.py
 ```
-**Output:** `data/vietnam_locations.csv` containing latitude and longitude coordinates for approximately 34 provinces and cities across Vietnam.
+**Output:** `data/raw/vietnam_locations.csv` containing latitude and longitude coordinates for approximately 34 provinces and cities across Vietnam.
 
 #### Step 2: Collect Air Quality and Weather Data
 ```bash
