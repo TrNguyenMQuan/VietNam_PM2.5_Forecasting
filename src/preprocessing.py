@@ -163,15 +163,5 @@ def train_val_test_split(df):
     val = df_model[(df_model["timestamp"] >= val_start_date) & (df_model["timestamp"] < test_start_date)]
     test = df_model[df_model["timestamp"] >= test_start_date]
 
-    # Separate Features and Target
-    X_train = train.drop(columns=["timestamp", "target_future"])
-    y_train = train["target_future"]
-
-    X_val = val.drop(columns=["timestamp", "target_future"])
-    y_val = val["target_future"]
-
-    X_test = test.drop(columns=["timestamp", "target_future"])
-    y_test = test["target_future"]
-
-    return X_train, y_train, X_val, y_val, X_test, y_test
+    return train, val, test
     
