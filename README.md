@@ -40,9 +40,9 @@
   - [4.2 Investigating Weather and Regional Climate Conditions](#42-investigating-weather-and-regional-climate-conditions)
   - [4.3 Pollutants Used in AQI Calculation](#43-pollutants-used-in-aqi-calculation)
 - [5. Key Findings Summary](#5-key-findings-summary)
-  - [5.1 Regional Climate Impact](#51-regional-climate-impact)
+  - [5.1 Human Activity Impact on Air Quality](#51-human-activity-impact-on-air-quality)
   - [5.2 Pollution Sources](#52-pollution-sources)
-  - [5.3 PM2.5 vs. PM10 Relationship](#53-pm25-vs-pm10-relationship)
+  - [5.3 PM2.5/PM10 Ratio as a Diagnostic for Local vs. External Pollution](#53-pm25pm10-ratio-as-a-diagnostic-for-local-vs-external-pollution)
   - [5.4 Model Performance](#54-model-performance)
 - [6. File Structure](#6-file-structure)
   - [6.1 Directory Descriptions](#61-directory-descriptions)
@@ -173,7 +173,7 @@ The dataset is a time-series collection integrating meteorological and air pollu
 
 ## 5. Key Findings Summary
 
-### 5.1 Regional Climate Impact
+### 5.1 Human Activity Impact on Air Quality
 
 Human activities directly influence air quality in Vietnamese cities. Analysis reveals that air quality significantly improves on weekends compared to weekdays, with AQI typically peaking around **Thursday** and showing sharp decreases on **Saturday and Sunday** due to reduced industrial and traffic activities. Cities with high population density and intensive industrial activity (e.g., Hà Nội, Bắc Ninh, Hồ Chí Minh, Biên Hòa) show substantially higher AQI levels (mean AQI: **95.60**) compared to green cities with lower density and limited industrial concentration (mean AQI: **73.74**), demonstrating a **~30% difference** in pollution levels.
 
