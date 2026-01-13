@@ -208,7 +208,8 @@ VietNam_PM2.5_Forecasting/
 │
 ├── data/                           # Data directory
 │   ├── raw/                        # Raw data from API
-│   │   └── vietnam_air_quality.csv
+│   │   ├── vietnam_air_quality.csv
+│   │   └── vietnam_locations.csv   # Location coordinates for cities
 │   ├── processed/                  # Processed and cleaned data
 │   │   └── processed_data.csv
 │   └── model/                      # Train/test/validation splits
@@ -234,7 +235,7 @@ VietNam_PM2.5_Forecasting/
 
 ### 6.1 Directory Descriptions
 
-- **`data/raw/`**: Contains raw hourly air quality and meteorological data collected from Open-Meteo API
+- **`data/raw/`**: Contains raw hourly air quality and meteorological data collected from Open-Meteo API, and location coordinates file (`vietnam_locations.csv`) with latitude/longitude for each city
 - **`data/processed/`**: Contains cleaned and feature-engineered datasets ready for modeling
 - **`data/model/`**: Contains train/test/validation dataset splits (train.csv, test.csv, val.csv) for model training and evaluation
 - **`notebooks/`**: Jupyter notebooks organized by workflow stages (preprocessing → exploration → modeling)
@@ -468,7 +469,7 @@ This project is developed for academic purposes as part of the Introduction to D
 
 <div align="center">
 
-**Made for better air quality forecasting in Vietnam**
+**Made for better air quality forecasting in VietNam**
 
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?logo=github)](https://github.com/TrNguyenMQuan/VietNam_PM2.5_Forecasting)
 
