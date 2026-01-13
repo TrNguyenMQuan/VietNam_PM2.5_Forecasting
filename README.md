@@ -55,6 +55,7 @@
 - [9. Model Performance Comparison](#9-model-performance-comparison)
 - [10. Limitations & Future Work](#10-limitations--future-work)
 - [11. Contact](#11-contact)
+- [12. References](#12-references)
 
 ---
 
@@ -434,6 +435,22 @@ For questions, suggestions, or collaborations, please contact team members via e
 | Trương Quang Phát | 23120318 | [23120318@student.hcmus.edu.vn](mailto:23120318@student.hcmus.edu.vn) |
 | Huỳnh Tấn Phước | 23120334 | [23120334@student.hcmus.edu.vn](mailto:23120334@student.hcmus.edu.vn) |
 | Trần Nguyễn Minh Quân | 23120342 | [23120342@student.hcmus.edu.vn](mailto:23120342@student.hcmus.edu.vn) |
+
+---
+
+## 12. References
+
+[1] Wirth, R., & Hipp, J. (2000). CRISP-DM: Towards a standard process model for data mining. *Proceedings of the 4th International Conference on the Practical Applications of Knowledge Discovery and Data Mining*, 29-39.
+
+[2] Hyndman, R. J., & Athanasopoulos, G. (2018). *Forecasting: principles and practice*. OTexts. Available at: https://otexts.com/fpp2/
+
+[3] James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). *An introduction to statistical learning: with applications in R*. Springer Science & Business Media. Official PDF available at: https://www.statlearning.com/
+
+[4] Chen, T., & Guestrin, C. (2016). XGBoost: A scalable tree boosting system. *Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining*, 785-794. Preprint available at: https://arxiv.org/abs/1603.02754
+
+[5] Open-Meteo. (n.d.). Air Quality API Documentation. Retrieved from: https://open-meteo.com/
+
+[6] Akiba, T., Sano, S., Yanase, T., Ohta, T., & Koyama, M. (2019). Optuna: A next-generation hyperparameter optimization framework. *Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining*, 2623-2631. Preprint available at: https://arxiv.org/abs/1907.10902
 
 ---
 
