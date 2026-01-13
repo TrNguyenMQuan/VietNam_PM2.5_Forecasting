@@ -11,6 +11,7 @@
 [![Jupyter](https://img.shields.io/badge/Notebook-Jupyter-F37626?logo=jupyter&logoColor=white)](https://jupyter.org/)
 [![Matplotlib](https://img.shields.io/badge/Visualization-Matplotlib-11557C?logo=matplotlib&logoColor=white)](https://matplotlib.org/)
 [![Dataset](https://img.shields.io/badge/Dataset-Open--Meteo-0080FF?logo=cloudflare&logoColor=white)](https://open-meteo.com/)
+[![Trello](https://img.shields.io/badge/Project-Trello-0079BF?logo=trello&logoColor=white)](https://trello.com/invite/b/690653218d9e920d842ae003/ATTI57b16ae720553776d120c333a5cf0f09C269FA10/project-nmkhdl)
 [![Status](https://img.shields.io/badge/Status-Completed-22C55E?logoColor=white)](https://github.com)
 
 **A comprehensive machine learning project for short-term PM2.5 concentration forecasting across Vietnam using meteorological and air quality data**
@@ -95,6 +96,8 @@ The project implements a complete data science pipeline:
 | 2 | Trương Quang Phát     | 23120318   |
 | 3 | Huỳnh Tấn Phước       | 23120334   |
 | 4 | Trần Nguyễn Minh Quân | 23120342   |
+
+**Project Management:** [Trello Board](https://trello.com/invite/b/690653218d9e920d842ae003/ATTI57b16ae720553776d120c333a5cf0f09C269FA10/project-nmkhdl) - Team collaboration and task tracking
 
 ---
 
