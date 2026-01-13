@@ -92,7 +92,7 @@ for place in target_locations:
 # Save result to CSV
 if found_data:
     df = pd.DataFrame(found_data)
-    output_file = "data/vietnam_locations.csv"
+    output_file = "data/raw/vietnam_locations.csv"
     df.to_csv(output_file, index=False, encoding="utf-8-sig")
     
     print(f"Done. Data saved to '{output_file}' with {len(df)} locations.")

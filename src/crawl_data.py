@@ -10,8 +10,8 @@ from tqdm import tqdm
 
 START_DATE = "2023-01-01"
 END_DATE = (date.today() - timedelta(days=5)).strftime("%Y-%m-%d")
-LOCATION_FILE = "data/vietnam_locations.csv"
-OUTPUT_FILE = "data/vietnam_air_quality.csv"
+LOCATION_FILE = "data/raw/vietnam_locations.csv"
+OUTPUT_FILE = "data/raw/vietnam_air_quality.csv"
 
 session = requests.Session()
 retries = Retry(total=10, backoff_factor=5, status_forcelist=[429, 500, 502, 503, 504])
