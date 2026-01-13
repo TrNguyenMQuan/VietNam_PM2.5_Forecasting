@@ -251,7 +251,7 @@ VietNam_PM2.5_Forecasting/
 #### Step 1: Clone Repository
 ```bash
 git clone https://github.com/TrNguyenMQuan/VietNam_PM2.5_Forecasting
-cd VietNam-AQI-Forescating
+cd VietNam_PM2.5_Forecasting
 ```
 
 #### Step 2: Create Virtual Environment
