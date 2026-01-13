@@ -181,7 +181,7 @@ Human activities directly influence air quality in Vietnamese cities. Analysis r
 
 High AQI in Northern regions primarily stems from **local emission sources** rather than transboundary pollution. Wind speed negatively correlates with AQI (correlation ≈ **-0.12**), with PM2.5 decreasing noticeably when wind speed exceeds **3 m/s**.
 
-### 5.3 PM2.5 vs. PM10 Relationship
+### 5.3 PM2.5/PM10 Ratio as a Diagnostic for Local vs. External Pollution
 
 In the most polluted northern cities (e.g., Hà Nội, Bắc Ninh, Hưng Yên), high AQI levels come from both **local emissions** and a strong **regional background** of pollution. The average PM2.5/PM10 ratio is about **0.79**, meaning most particles are fine dust and secondary aerosol, which is typical for **pollution transported from other regions** rather than only local road or construction dust.  
 For Hà Nội, PM2.5 during rush hours is almost the same as at night (rush/night ratio ≈ **1.0**), and rain only reduces PM2.5 by around **26%**. This flat daily pattern and weak cleaning effect of rain show that pollution is **constantly replenished from outside the city**, so severe episodes cannot be explained by local sources alone.
