@@ -116,7 +116,7 @@ The dataset is collected from the **[Open-Meteo API](https://open-meteo.com/)**,
 - **Temporal Resolution**: Hourly data points
 - **Timezone**: `Asia/Ho_Chi_Minh` (UTC+7) to match Vietnam's local time
 - **Geographic Coverage**: Approximately 34 provinces and major cities across Vietnam
-- **Location Coordinates**: Sourced from `data/vietnam_locations.csv`, which contains latitude and longitude coordinates for each city
+- **Location Coordinates**: Sourced from `data/raw/vietnam_locations.csv`, which contains latitude and longitude coordinates for each city
 - **Raw Data File**: `data/raw/vietnam_air_quality.csv` (generated via automated data crawling script)
 
 ### 3.2 Dataset Description
