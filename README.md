@@ -244,7 +244,7 @@ VietNam_PM2.5_Forecasting/
 ## 7. Installation & Setup
 
 ### 7.1 Prerequisites
-- Python 3.10 or higher
+- Python 3.10 (recommended)
 - pip package manager
 
 ### 7.2 Setup
